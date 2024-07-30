@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "usuario1@mail.com",
+      "pubKey": "0x1aB14C91cBE33Ca32A43E787c96eFB02D83ce6Fe",
+      "priKey": "0x786489354cc0b45021cd79d192025762aa70b75732fcf4bc693500596f042125"
+    },
+    {
+      "id": 2,
+      "email": "usuario2@mail.com",
+      "pubKey": "0x1555C3e84fb7093b0915Ee1F11dBE33Ecc4E9B06",
+      "priKey": "0xc1b6161d196ed51234a4a4c9de2109b5e1bf68a640fe4c4ee5c1315a77450cbf"
+    },
+    {
+      "id": 3,
+      "email": "usuario3@mail.com",
+      "pubKey": "0x36Ed45AE04D6E312d12350C6c85c3023a29786A6",
+      "priKey": "0xfe6ce15cd26593444e23c65b0a7e9246c1105b6c2c56ab9c0b6cffb4e90fb05d"
+    }
+  ],
+  "offers": [
+    {
+      "id": 1,
+      "agent": "hidroituango",
+      "energy": 20,
+      "price": 5000,
+      "hourFrom": 1721763000,
+      "hourTo": 1721772000,
+      "priceNormal": 6000,
+      "typeGenerator": "WATER",
+      "status": "INPROGRESS"
+    }
+  ],
+  "purchase": [
+    {
+      "id": 1,
+      "userId": 1,
+      "offerId": 1,
+      "energy": 20,
+      "price": 5000,
+      "typeGenerator": "WATER",
+      "cashback": 50,
+      "status": "PENDING",
+      "signature": "0xbb29f1159e4312b226691478f55a1ace588918544ccf501a55bf7a3b28dc021830ea4a5aab51c2538626ddf7225208aac638c218b0116dbe96c677cd558ec22e1b",
+      "createdAt": 1722350193,
+      "updatedAt": 1722350193
+    }
+  ]
+}
