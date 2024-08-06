@@ -163,7 +163,58 @@ app.post("/purchase-web3", async (req, res) => {
     deposit: deposit?.transactionHash,
   });
 });
+app.get("/transactions", async (req, res) => {
+  const idTrx= req.body.idTrx
+  // Importar base de datos
+  const data = await fs.readFile("data.json", "utf8");
+   // Obtencion del email por los headers
+   const headers = req.headers?.authorization;
+   const email = headers.split(" ")[1];
+   // base de datos de usuarios
+   const users = JSON.parse(data).users;
+   // Filtro de usuario por email
+   const user = users.find((el) => el.email === email);
+   if (!user) {
+     res.status(400).json({ message: "USER_NOT_FOUND" });
+     return;
+   }
 
+  let transactions
+  try{
+    const eafitCOPContract = new web3.eth.Contract(
+      contract.ABIMain,
+      contract.Main
+    );
+    transactions= await eafitCOPContract
+      .methods.transfers(String(idTrx)).call();
+    console.log({ transactions: Number(transactions) });
+  }
+  catch (ex) {
+    console.log({ ex });
+    console.log(ex.message);
+  }
+  res.json({
+    message: "Transactions",
+    idTrx: idTrx,
+    transactions: Number(transactions)
+  });
+});
+
+app.post("/withdrawal"), async (req, res) => {
+  const account = web3.eth.accounts.wallet.add(process.env.privateKey);
+  const amount = req.body.amount;
+  const to = req.body.receiver; 
+  const decimals = 1000000000000000000;
+
+  const eafitCOPContract = new web3.eth.Contract(
+    contract.ABIMain,
+    contract.Main
+  );
+  const withdrawal = await eafitCOPContract.methods
+    .withdrawal(to, amount * decimals);
+  console.log({ trx });
+  res.json({ hash: withdrawal?.transactionHash });
+}
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
